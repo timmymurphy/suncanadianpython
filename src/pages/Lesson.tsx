@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 import { useAuth } from '@/contexts/AuthContext';
 import { useLesson, useQuizzes, useCodingChallenges } from '@/hooks/useCourses';
 import { useCompleteLesson } from '@/hooks/useProgress';
@@ -13,7 +14,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { XPBadge } from '@/components/ui/xp-badge';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
 import { toast } from 'sonner';
-
 export default function Lesson() {
   const { courseId, lessonId } = useParams();
   const { user, loading } = useAuth();
@@ -55,8 +55,8 @@ export default function Lesson() {
 
         {/* Lesson Content */}
         <Card className="mb-6">
-          <CardContent className="p-6 prose prose-sm max-w-none">
-            {lesson.content.split('\n').map((p, i) => <p key={i}>{p}</p>)}
+          <CardContent className="p-6 prose prose-sm dark:prose-invert max-w-none">
+            <ReactMarkdown>{lesson.content}</ReactMarkdown>
           </CardContent>
         </Card>
 
