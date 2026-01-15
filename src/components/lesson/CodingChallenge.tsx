@@ -5,7 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { XPBadge } from '@/components/ui/xp-badge';
 import { CodingChallenge as ChallengeType } from '@/hooks/useCourses';
 import { useAddXP } from '@/hooks/useProfile';
-import { cn } from '@/lib/utils';
+import { cn, formatContent } from '@/lib/utils';
 import { Code, Lightbulb, CheckCircle, XCircle, Play } from 'lucide-react';
 
 interface CodingChallengeProps {
@@ -103,7 +103,7 @@ export function CodingChallenge({ challenge, onComplete }: CodingChallengeProps)
           </div>
           <XPBadge amount={challenge.xp_reward} size="sm" />
         </div>
-        <p className="text-sm text-muted-foreground mt-2">{challenge.description}</p>
+        <p className="text-sm text-muted-foreground mt-2 whitespace-pre-wrap">{formatContent(challenge.description)}</p>
       </CardHeader>
       <CardContent className="space-y-4">
         {/* Code Editor */}
@@ -151,7 +151,7 @@ export function CodingChallenge({ challenge, onComplete }: CodingChallengeProps)
               <Lightbulb className="h-4 w-4 text-accent" />
               <span className="font-bold text-sm">Hint {currentHint + 1}</span>
             </div>
-            <p className="text-sm">{challenge.hints[currentHint]}</p>
+            <p className="text-sm whitespace-pre-wrap">{formatContent(String(challenge.hints[currentHint]))}</p>
           </div>
         )}
 

@@ -5,7 +5,7 @@ import { XPBadge } from '@/components/ui/xp-badge';
 import { Quiz } from '@/hooks/useCourses';
 import { useRecordQuizAttempt } from '@/hooks/useProgress';
 import { useAddXP } from '@/hooks/useProfile';
-import { cn } from '@/lib/utils';
+import { cn, formatContent } from '@/lib/utils';
 import { CheckCircle, XCircle, HelpCircle } from 'lucide-react';
 
 interface QuizCardProps {
@@ -55,7 +55,7 @@ export function QuizCard({ quiz, onComplete }: QuizCardProps) {
         </div>
       </CardHeader>
       <CardContent className="space-y-4">
-        <p className="font-medium">{quiz.question}</p>
+        <p className="font-medium whitespace-pre-wrap">{formatContent(quiz.question)}</p>
 
         <div className="space-y-2">
           {quiz.options.map((option, index) => (
@@ -96,9 +96,9 @@ export function QuizCard({ quiz, onComplete }: QuizCardProps) {
             "p-4 rounded-lg",
             isCorrect ? "bg-success/10 border border-success/30" : "bg-accent/10 border border-accent/30"
           )}>
-            <p className="text-sm">
+            <p className="text-sm whitespace-pre-wrap">
               <span className="font-bold">{isCorrect ? '🎉 Correct!' : '💡 Not quite!'}</span>
-              {' '}{quiz.explanation}
+              {' '}{formatContent(quiz.explanation || '')}
             </p>
           </div>
         )}

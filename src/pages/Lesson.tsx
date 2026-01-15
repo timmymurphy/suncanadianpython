@@ -6,6 +6,7 @@ import { useLesson, useQuizzes, useCodingChallenges } from '@/hooks/useCourses';
 import { useCompleteLesson } from '@/hooks/useProgress';
 import { useAddXP } from '@/hooks/useProfile';
 import { Navbar } from '@/components/layout/Navbar';
+import { formatContent } from '@/lib/utils';
 import { CodeBlock } from '@/components/lesson/CodeBlock';
 import { QuizCard } from '@/components/lesson/QuizCard';
 import { CodingChallenge } from '@/components/lesson/CodingChallenge';
@@ -56,7 +57,7 @@ export default function Lesson() {
         {/* Lesson Content */}
         <Card className="mb-6">
           <CardContent className="p-6 prose prose-sm dark:prose-invert max-w-none">
-            <ReactMarkdown>{lesson.content}</ReactMarkdown>
+            <ReactMarkdown>{formatContent(lesson.content)}</ReactMarkdown>
           </CardContent>
         </Card>
 
